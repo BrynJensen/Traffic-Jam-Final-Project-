@@ -13,7 +13,7 @@ void keyPressed() {
 void keyReleased() {
   if (key == 'w' || key == 'W' && mode == GAME) wkey = false;
   if (key == 'a' || key == 'A' && mode == GAME) akey = false;
-  if (key == 's' || key == 'S' && mode == GAME) akey = false;
+  if (key == 's' || key == 'S' && mode == GAME) skey = false;
   if (key == 'd' || key == 'D' && mode == GAME) dkey = false;
   
   if(keyCode == UP && mode == GAME) upkey = false;

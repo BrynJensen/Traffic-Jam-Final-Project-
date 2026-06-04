@@ -39,15 +39,26 @@ boolean wkey, akey, skey, dkey, upkey, leftkey, downkey, rightkey;
 //GAME VARIABLES
 int TS = 60; //INTRO TEXT SIZE
 boolean textS = false; //INTRO TEXT SIZE SWITCH
-int dashX = - 80; //ROAD LINES X MOVEMENT
+float dashX = - 80; //ROAD LINES X MOVEMENT
 float dashS = 3; //ROAD LINES SPEED
+
+//CAR VARIABLES
+float redX, redY, redW, redH;
+
+float blueX, blueY, blueW, blueH;
+
+//COLLISION VARIABLES
+float counterTop, counterBottom, counterRight, counterLeft = 0;
+boolean top, bottom, right, left;
 
 
 void setup() {
   size(600, 900, FX2D);
   mode = INTRO;
+  smooth();
   
   textAlign(CENTER);
+  rectMode(CENTER);
   
   //ENTITY INITIALIZATION
   
@@ -57,6 +68,18 @@ void setup() {
   //FONT LOADING
   PFont font = createFont("Magic Yellow.otf", 200);
   textFont(font);
+  
+  //CAR INITIALIZATION
+  redX = width/2;
+  redY = height/2 - 50;
+  redW = 100;
+  redH = 50;
+  
+  
+  blueX = width/2;
+  blueY = height/2 + 100;
+  blueW = 100;
+  blueH = 50;
   
 }
 
