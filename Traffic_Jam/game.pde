@@ -1,6 +1,4 @@
-void game() {  
-  println(top);
-  
+void game() {    
   background(water);
   noStroke();
   
@@ -53,20 +51,51 @@ void game() {
   if(rightkey == true && blueX < width - blueW/2) blueX += 5;
   
   //CAR COLLISIONS
-  if(blueY - redY == blueH/2 + redH/2){
+  if(blueY - redY == blueH/2 + redH/2 && redX - blueX < 100 && blueX - redX < 100){
    top = true; 
   }
-  
-  if(top == true){
-   counterTop ++; 
+  if(redY - blueY == blueH/2 + redH/2 && redX - blueX < 100 && blueX - redX < 100) {
+   bottom = true; 
+  }
+  if(blueX - redX == blueW/2 + redW/2 && blueY - redY < 50 && redY - blueY < 50) {
+   right = true; 
+  }
+  if(redX - blueX == blueW/2 + redW/2 && blueY - redY < 50 && redY - blueY < 50) {
+   left = true; 
   }
   
-  if(counterTop > 0 && counterTop < 50){
+  if(top == true) counterTop ++;
+  if(bottom == true) counterBottom ++;
+  if(right == true) counterRight ++;
+  if(left == true) counterLeft ++;
+  
+  if(counterTop > 0 && counterTop <= 50){
    blueY += 2;
    redY -= 2;
-  } else if (counterTop >= 50){
+  } else if (counterTop > 50){
    counterTop = 0; 
    top = false;
+  }
+  if(counterBottom > 0 && counterBottom <= 50){
+   blueY -= 2;
+   redY += 2;
+  } else if (counterBottom > 50){
+   counterBottom = 0; 
+   bottom = false;
+  }
+  if(counterLeft > 0 && counterLeft <= 50){
+   blueX -= 2;
+   redX += 2;
+  } else if (counterLeft > 50){
+   counterLeft = 0; 
+   left = false;
+  }
+  if(counterRight > 0 && counterRight <= 50){
+   blueX += 2;
+   redX -= 2;
+  } else if (counterRight > 50){
+   counterRight = 0; 
+   right = false;
   }
 }
 

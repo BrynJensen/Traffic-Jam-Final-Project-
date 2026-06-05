@@ -1,7 +1,6 @@
 //Bryn Jensen
 //2-1
 //TRAFFIC JAM
-//figure out road line ebbing
 
 //IMPORT LIBRARIES
   //JAVA FX
@@ -49,7 +48,7 @@ float blueX, blueY, blueW, blueH;
 
 //COLLISION VARIABLES
 float counterTop, counterBottom, counterRight, counterLeft = 0;
-boolean top, bottom, right, left;
+boolean top, bottom, right, left; //RELATIVE TO RED SQUARE
 
 
 void setup() {
