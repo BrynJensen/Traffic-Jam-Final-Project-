@@ -1,6 +1,7 @@
 //Bryn Jensen
 //2-1
 //TRAFFIC JAM
+//FIX DIAGONAL BOUNCING
 
 //IMPORT LIBRARIES
   //JAVA FX
@@ -47,8 +48,8 @@ float redX, redY, redW, redH;
 float blueX, blueY, blueW, blueH;
 
 //COLLISION VARIABLES
-float counterTop, counterBottom, counterRight, counterLeft = 0;
-boolean top, bottom, right, left; //RELATIVE TO RED SQUARE
+float counterBottom, counterTop, counterRight, counterLeft = 0;
+boolean bottom, top, right, left; //RELATIVE TO RED SQUARE
 
 
 void setup() {
