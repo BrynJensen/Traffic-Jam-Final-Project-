@@ -1,7 +1,8 @@
 //Bryn Jensen
 //2-1
 //TRAFFIC JAM
-//FIX DIAGONAL BOUNCING
+//FIX bump off screen
+//COLLISIONLEFT Y OFF
 
 //IMPORT LIBRARIES
   //JAVA FX
@@ -47,6 +48,12 @@ float redX, redY, redW, redH;
 
 float blueX, blueY, blueW, blueH;
 
+float redLives, blueLives;
+
+float truckX;
+
+boolean collisionTop, collisionBottom, collisionRight, collisionLeft;
+
 //COLLISION VARIABLES
 float counterBottom, counterTop, counterRight, counterLeft = 0;
 boolean bottom, top, right, left; //RELATIVE TO RED SQUARE
@@ -65,22 +72,30 @@ void setup() {
   //KEYBOARD VARIABLES INITIALIZATION
   wkey = akey = skey = dkey = upkey = leftkey = downkey = rightkey = false;
   
+  //COLLISION VARIABLES INITIALIZATION
+  bottom = top = right = left = false;
+  collisionTop = collisionBottom = collisionRight = collisionLeft = false;
+  
   //FONT LOADING
   PFont font = createFont("Magic Yellow.otf", 200);
   textFont(font);
   
   //CAR INITIALIZATION
   redX = width/2;
-  redY = height/2 - 50;
+  redY = height/2 - 75;
   redW = 100;
   redH = 50;
   
   
   blueX = width/2;
-  blueY = height/2 + 100;
+  blueY = height/2 + 75;
   blueW = 100;
   blueH = 50;
   
+  redLives = 3;
+  blueLives = 3;
+  
+  truckX = -200;
 }
 
 

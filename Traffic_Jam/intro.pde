@@ -1,6 +1,8 @@
 void intro() {
   background(truck);
   
+  fill(white);
+  
   textSize(TS);
   text("Traffic Jam", width/2, height/2 - 100);
   

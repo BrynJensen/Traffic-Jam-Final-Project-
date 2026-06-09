@@ -1,5 +1,5 @@
 void game() {
-  println(mouseX, mouseY);
+  println(collisionLeft, collisionRight, collisionBottom, collisionTop);
 
   background(water);
   noStroke();
@@ -18,14 +18,11 @@ void game() {
 
   //ROAD LINES
   fill(white);
-  rect(dashX, height/2 + 25, 80, 25);
-  rect(dashX + 160, height/2 + 25, 80, 25);
-  rect(dashX + 320, height/2 + 25, 80, 25);
-  rect(dashX + 480, height/2 + 25, 80, 25);
-  rect(dashX + 640, height/2 + 25, 80, 25);
-
-  ////TEST
-  //rect(dashX + 250, height/2 - 100, 50, 50);
+  rect(dashX, height/2, 80, 25);
+  rect(dashX + 160, height/2, 80, 25);
+  rect(dashX + 320, height/2, 80, 25);
+  rect(dashX + 480, height/2, 80, 25);
+  rect(dashX + 640, height/2, 80, 25);
 
   dashX += dashS;
   if (dashX > 80) {
@@ -41,11 +38,49 @@ void game() {
   fill(blue);
   rect(blueX, blueY, blueW, blueH, 15, 5, 5, 15);
 
+  //DRAW TRUCKS
+  fill(truck);
+  rect(truckX, 325, 200, 100, 15, 5, 5, 15);
+  rect(truckX - 1100, 575, 200, 100, 15, 5, 5, 15);
+
+  truckX += dashS/2;
+
+  if (truckX >= width + 1400) {
+    truckX = -200;
+  }
+
+  //TRUCK COLLISIONS
+  if (redX - truckX < redW/2 + 100 && redY < 425 - redH/2 && redY > 225 + redH/2 && truckX - redX < 0) {
+    collisionRight = true;
+  } else { 
+   collisionRight = false; 
+  }
+  
+  if (truckX - redX < redW/2 + 100 && redY < 425 + 20 && redY > 225 - 20 && redX - truckX < 0) {
+    collisionLeft = true;
+  } else {
+   collisionLeft = false; 
+  }
+  
+  if (redY < 425 - 20 && redY > 325 && redX - truckX < redW/2 + 100 && truckX - redX < redW/2 + 100) {
+    collisionBottom = true;
+  } else {
+   collisionBottom = false; 
+  }
+  
+  if (redY > 225 + 20 && redY < 325 && redX - truckX < redW/2 + 100 && truckX - redX < redW/2 + 100) {
+    collisionTop = true;
+  } else {
+   collisionTop = false; 
+  }  
+  
+  if (collisionRight == true) redX += dashS/2;
+
   //CAR MOVEMENT
-  if (wkey == true && redY > 125 + redH/2 && left == false && bottom == false && top == false && right == false && redY >= 150 && redY <= 750) redY -= 5;
-  if (akey == true && redX > redW/2 && left == false && bottom == false && top == false && right == false && redY >= 150 && redY <= 750) redX -= 5;
-  if (skey == true && redY < height - 125 - redH/2 && left == false && bottom == false && top == false && right == false && redY >= 150 && redY <= 750) redY += 5;
-  if (dkey == true && redX < width - redW/2 && left == false && bottom == false && top == false && right == false && redY >= 150 && redY <= 750) redX += 5;
+  if (wkey == true && redY > 125 + redH/2 && left == false && bottom == false && top == false && right == false && redY >= 150 && redY <= 750 && collisionBottom != true) redY -= 5;
+  if (akey == true && redX > redW/2 && left == false && bottom == false && top == false && right == false && redY >= 150 && redY <= 750 && collisionRight != true) redX -= 5;
+  if (skey == true && redY < height - 125 - redH/2 && left == false && bottom == false && top == false && right == false && redY >= 150 && redY <= 750 && collisionTop != true) redY += 5;
+  if (dkey == true && redX < width - redW/2 && left == false && bottom == false && top == false && right == false && redY >= 150 && redY <= 750 && collisionLeft != true) redX += 5;
 
   if (upkey == true && blueY > 125 + blueH/2 && left == false && bottom == false && top == false && right == false && blueY >= 150 && blueY <= 750) blueY -= 5;
   if (leftkey == true && blueX > blueW/2 && left == false && bottom == false && top == false && right == false && blueY >= 150 && blueY <= 750) blueX -= 5;
@@ -109,7 +144,7 @@ void game() {
     redW -= 2;
     redH -= 1;
   }
-  
+
   if (blueY <= 150) {
     blueW -= 2;
     blueH -= 1;
@@ -118,7 +153,7 @@ void game() {
     blueW -= 2;
     blueH -= 1;
   }
-  
+
   if (blueW <= 0) mode = GAMEOVER;
   if (redW <= 0) mode = GAMEOVER;
 }
