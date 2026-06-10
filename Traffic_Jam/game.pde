@@ -1,6 +1,21 @@
 void game() {
-  println(collisionLeft, collisionRight, collisionBottom, collisionTop);
+  println(collision);
 
+  T1T = truckY1 - truckH1/2;
+  T1B = truckY1 + truckH1/2;
+  T1L = truckX1 - truckW1/2;
+  T1R = truckX1 + truckW1/2;
+  
+  RT = redY - redH/2;
+  RB = redY + redH/2;
+  RR = redX + redW/2;
+  RL = redX - redW/2;
+  
+  BT = blueY - blueH/2;
+  BB = blueY + blueH/2;
+  BR = blueX + blueW/2;
+  BL = blueX - blueW/2;
+  
   background(water);
   noStroke();
 
@@ -40,40 +55,23 @@ void game() {
 
   //DRAW TRUCKS
   fill(truck);
-  rect(truckX, 325, 200, 100, 15, 5, 5, 15);
-  rect(truckX - 1100, 575, 200, 100, 15, 5, 5, 15);
+  rect(truckX1, truckY1, truckW1, truckH1, 15, 5, 5, 15);
+  rect(truckX1 - 1100, 575, 200, 100, 15, 5, 5, 15);
 
-  truckX += dashS/2;
+  truckX1 += dashS/2;
 
-  if (truckX >= width + 1400) {
-    truckX = -200;
+  if (truckX1 >= width + 1400) {
+    truckX1 = -200;
   }
 
   //TRUCK COLLISIONS
-  if (redX - truckX < redW/2 + 100 && redY < 425 - redH/2 && redY > 225 + redH/2 && truckX - redX < 0) {
-    collisionRight = true;
-  } else { 
-   collisionRight = false; 
+  if (T1R >= RL && T1L <= RR && T1B >= RT && T1T <= RB) {
+   collision = true; 
+  } else {
+   collision = false; 
   }
   
-  if (truckX - redX < redW/2 + 100 && redY < 425 + 20 && redY > 225 - 20 && redX - truckX < 0) {
-    collisionLeft = true;
-  } else {
-   collisionLeft = false; 
-  }
-  
-  if (redY < 425 - 20 && redY > 325 && redX - truckX < redW/2 + 100 && truckX - redX < redW/2 + 100) {
-    collisionBottom = true;
-  } else {
-   collisionBottom = false; 
-  }
-  
-  if (redY > 225 + 20 && redY < 325 && redX - truckX < redW/2 + 100 && truckX - redX < redW/2 + 100) {
-    collisionTop = true;
-  } else {
-   collisionTop = false; 
-  }  
-  
+
   if (collisionRight == true) redX += dashS/2;
 
   //CAR MOVEMENT

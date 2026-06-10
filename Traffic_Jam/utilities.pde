@@ -17,7 +17,7 @@ void reset() {
   redLives = 3;
   blueLives = 3;
   
-  truckX = -200;
+  truckX1 = -200;
   
   dashS = 3;
   dashX = - 80;

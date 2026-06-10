@@ -1,8 +1,7 @@
 //Bryn Jensen
 //2-1
 //TRAFFIC JAM
-//FIX bump off screen
-//COLLISIONLEFT Y OFF
+
 
 //IMPORT LIBRARIES
   //JAVA FX
@@ -44,15 +43,15 @@ float dashX = - 80; //ROAD LINES X MOVEMENT
 float dashS = 3; //ROAD LINES SPEED
 
 //CAR VARIABLES
-float redX, redY, redW, redH;
+float redX, redY, redW, redH, RL, RR, RT, RB;
 
-float blueX, blueY, blueW, blueH;
+float blueX, blueY, blueW, blueH, BL, BR, BT, BB;
 
 float redLives, blueLives;
 
-float truckX;
+float truckX1, truckY1, truckH1, truckW1, T1L, T1R, T1T, T1B;
 
-boolean collisionTop, collisionBottom, collisionRight, collisionLeft;
+boolean collisionTop, collisionBottom, collisionRight, collisionLeft, collision;
 
 //COLLISION VARIABLES
 float counterBottom, counterTop, counterRight, counterLeft = 0;
@@ -95,7 +94,10 @@ void setup() {
   redLives = 3;
   blueLives = 3;
   
-  truckX = -200;
+  truckX1 = -200;
+  truckY1 = 325;
+  truckW1 = 200;
+  truckH1 = 100;
 }
 
 
