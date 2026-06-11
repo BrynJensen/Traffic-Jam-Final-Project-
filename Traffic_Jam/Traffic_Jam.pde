@@ -1,11 +1,12 @@
 //Bryn Jensen
 //2-1
 //TRAFFIC JAM
+//MAKE COLLISIONS FOR RED AND TRUCK 2
 
 
 //IMPORT LIBRARIES
   //JAVA FX
-  import processing.javafx.*;
+  //import processing.javafx.*;
   
   //MINIM
   import ddf.minim.*;
@@ -50,16 +51,19 @@ float blueX, blueY, blueW, blueH, BL, BR, BT, BB;
 float redLives, blueLives;
 
 float truckX1, truckY1, truckH1, truckW1, T1L, T1R, T1T, T1B;
+float truckX2, truckY2, truckH2, truckW2, T2L, T2R, T2T, T2B;
 
-boolean collisionTop, collisionBottom, collisionRight, collisionLeft, collision;
+boolean collisionTopTR, collisionBottomTR, collisionRightTR, collisionLeftTR;
 
 //COLLISION VARIABLES
 float counterBottom, counterTop, counterRight, counterLeft = 0;
 boolean bottom, top, right, left; //RELATIVE TO RED SQUARE
+float overlapLTR, overlapRTR, overlapTTR, overlapBTR, minOverlapTR;
+boolean collisionTR;
 
 
 void setup() {
-  size(600, 900, FX2D);
+  size(600, 900, P2D);
   mode = INTRO;
   smooth();
   
@@ -73,7 +77,6 @@ void setup() {
   
   //COLLISION VARIABLES INITIALIZATION
   bottom = top = right = left = false;
-  collisionTop = collisionBottom = collisionRight = collisionLeft = false;
   
   //FONT LOADING
   PFont font = createFont("Magic Yellow.otf", 200);
@@ -98,6 +101,11 @@ void setup() {
   truckY1 = 325;
   truckW1 = 200;
   truckH1 = 100;
+  
+  truckX2 = -1300;
+  truckY2 = 575;
+  truckW2 = 200;
+  truckH2 = 100;
 }
 
 
