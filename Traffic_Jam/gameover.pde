@@ -1,9 +1,8 @@
 void gameover() {
-  reset();
-  
   background(red);
 }
 
 void gameoverClicks() {
+  reset();
   mode = INTRO;
 }

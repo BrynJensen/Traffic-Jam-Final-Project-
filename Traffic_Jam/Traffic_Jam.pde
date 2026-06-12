@@ -54,12 +54,21 @@ float truckX1, truckY1, truckH1, truckW1, T1L, T1R, T1T, T1B;
 float truckX2, truckY2, truckH2, truckW2, T2L, T2R, T2T, T2B;
 
 boolean collisionTopTR, collisionBottomTR, collisionRightTR, collisionLeftTR;
+boolean collisionTopT2R, collisionBottomT2R, collisionRightT2R, collisionLeftT2R;
+boolean collisionTopTB, collisionBottomTB, collisionRightTB, collisionLeftTB;
+boolean collisionTopT2B, collisionBottomT2B, collisionRightT2B, collisionLeftT2B;
 
 //COLLISION VARIABLES
 float counterBottom, counterTop, counterRight, counterLeft = 0;
 boolean bottom, top, right, left; //RELATIVE TO RED SQUARE
 float overlapLTR, overlapRTR, overlapTTR, overlapBTR, minOverlapTR;
+float overlapLT2R, overlapRT2R, overlapTT2R, overlapBT2R, minOverlapT2R;
+float overlapLTB, overlapRTB, overlapTTB, overlapBTB, minOverlapTB;
+float overlapLT2B, overlapRT2B, overlapTT2B, overlapBT2B, minOverlapT2B;
 boolean collisionTR;
+boolean collisionT2R;
+boolean collisionTB;
+boolean collisionT2B;
 
 
 void setup() {
