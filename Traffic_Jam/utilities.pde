@@ -35,6 +35,15 @@ void reset() {
   counterTop = 0;
   counterRight = 0;
   counterLeft = 0;
+
+  cooldownR = 0;
+  cooldownB = 0;
+  
+  cooldownRed = false;
+  cooldownBlue = false;
+  
+  redCar = red;
+  blueCar = blue;
 }
 
 void collisionTR(float L1, float R1, float T1, float B1, float L2, float R2, float T2, float B2) {

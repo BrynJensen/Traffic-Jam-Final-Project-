@@ -58,10 +58,10 @@ void game() {
   if (dashS < 12) dashS += 0.003;
 
   //DRAW CARS
-  fill(red);
+  fill(redCar);
   rect(redX, redY, redW, redH, 15, 5, 5, 15);
 
-  fill(blue);
+  fill(blueCar);
   rect(blueX, blueY, blueW, blueH, 15, 5, 5, 15);
 
   //DRAW TRUCKS
@@ -110,6 +110,38 @@ void game() {
 
   if (blueW <= 0) mode = GAMEOVER;
   if (redW <= 0) mode = GAMEOVER;
+
+  //RESTRICT MOVEMENT OF CARS
+  if (redX >= width - redW/2) redX = width - redW/2;
+  if (blueX >= width - blueW/2) blueX = width - redW/2;
+
+  if (redX < redW/2) redX = redW/2;
+  if (blueX < blueW/2) redX = redW/2;
+
+  //LIVES
+  if ((collisionTR == true || collisionT2R == true) && cooldownRed == false) {
+    cooldownRed = true;
+    redLives -= 1;
+  }
+
+  if (cooldownRed == true) cooldownR ++;
+
+  if (cooldownR >= 60) {
+    cooldownRed = false;
+    cooldownR = 0;
+  }
+
+  if (redLives == 3) {
+    redCar = red;
+  } else if (redLives == 2) {
+    redCar = redDarker;
+  } else if (redLives == 1) {
+    redCar = redDarkest;
+  } else if (redLives == 0) {
+    mode = GAMEOVER;
+  }
+
+  println(redLives);
 }
 
 void gameClicks() {
