@@ -1,7 +1,7 @@
 //Bryn Jensen
 //2-1
 //TRAFFIC JAM
-// can be bumped into truck, make crash animation
+//add intro gif, music, make cars look good, make trucks look good, make truck 2 small and alternate the two top and bottom
 
 //IMPORT LIBRARIES
   //JAVA FX
