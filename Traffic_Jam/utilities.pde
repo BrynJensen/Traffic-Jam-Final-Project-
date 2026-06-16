@@ -38,10 +38,10 @@ void reset() {
 
   cooldownR = 0;
   cooldownB = 0;
-  
+
   cooldownRed = false;
   cooldownBlue = false;
-  
+
   redCar = red;
   blueCar = blue;
 }
@@ -238,29 +238,29 @@ void redBlueCollision() {
   if (left == true) counterLeft ++;
 
   if (counterBottom > 0 && counterBottom <= 15) {
-    blueY += 8;
-    redY -= 8;
+    if (collisionTB == false && collisionT2B == false) blueY += 8;
+    if (collisionTR == false && collisionT2R == false) redY -= 8;
   } else if (counterBottom > 15) {
     counterBottom = 0;
     bottom = false;
   }
   if (counterTop > 0 && counterTop <= 15) {
-    blueY -= 8;
-    redY += 8;
+    if (collisionTB == false && collisionT2B == false) blueY -= 8;
+    if (collisionTR == false && collisionT2R == false) redY += 8;
   } else if (counterTop > 15) {
     counterTop = 0;
     top = false;
   }
   if (counterLeft > 0 && counterLeft <= 15) {
-    blueX -= 8;
-    redX += 8;
+    if (collisionTB == false && collisionT2B == false) blueX -= 8;
+    if (collisionTR == false && collisionT2R == false) redX += 8;
   } else if (counterLeft > 15) {
     counterLeft = 0;
     left = false;
   }
   if (counterRight > 0 && counterRight <= 15) {
-    blueX += 8;
-    redX -= 8;
+    if (collisionTB == false && collisionT2B == false) blueX += 8;
+    if (collisionTR == false && collisionT2R == false) redX -= 8;
   } else if (counterRight > 15) {
     counterRight = 0;
     right = false;
@@ -277,4 +277,75 @@ void playerMovement() {
   if (leftkey == true && blueX > blueW/2 && left == false && bottom == false && top == false && right == false && blueY >= 150 && blueY <= 750 && collisionRightTB != true && collisionRightT2B != true) blueX -= 5;
   if (downkey == true && blueY < height - 125 - blueH/2 && left == false && bottom == false && top == false && right == false && blueY >= 150 && blueY <= 750 && collisionTopTB != true && collisionTopT2B != true) blueY += 5;
   if (rightkey == true && blueX < width - blueW/2 && left == false && bottom == false && top == false && right == false && blueY >= 150 && blueY <= 750 && collisionLeftTB != true && collisionLeftT2B != true) blueX += 5;
+}
+
+void lives() {
+  if ((collisionTR == true || collisionT2R == true) && cooldownRed == false) {
+    cooldownRed = true;
+    redLives -= 1;
+    
+    star(redX, redY, 5);
+  }
+
+  if ((collisionTB == true || collisionT2B == true) && cooldownBlue == false) {
+    cooldownBlue = true;
+    blueLives -= 1;
+    
+    star(blueX, blueY, 5);
+  }
+
+  if (cooldownRed == true) cooldownR ++;
+  if (cooldownBlue == true) cooldownB ++;
+
+  if (cooldownR >= 90) {
+    cooldownRed = false;
+    cooldownR = 0;
+  }
+
+  if (cooldownB >= 90) {
+    cooldownBlue = false;
+    cooldownB = 0;
+  }
+
+  if (redLives == 3) {
+    redCar = red;
+  } else if (redLives == 2) {
+    redCar = redDarker;
+  } else if (redLives == 1) {
+    redCar = redDarkest;
+  } else if (redLives == 0) {
+    mode = GAMEOVER;
+  }
+
+  if (blueLives == 3) {
+    blueCar = blue;
+  } else if (blueLives == 2) {
+    blueCar = blueDarker;
+  } else if (blueLives == 1) {
+    blueCar = blueDarkest;
+  } else if (blueLives == 0) {
+    mode = GAMEOVER;
+  }
+}
+
+void star(float x, float y, float s) {
+  fill(#FCD719);
+  strokeWeight(5);
+  stroke(#FCA219);
+  
+  pushMatrix();
+  translate(x, y);
+  scale(s);
+  
+  beginShape();
+  vertex(-5, 5);
+  vertex(0, 20);
+  vertex(5, 5);
+  vertex(20, 0);
+  vertex(5, -5);
+  vertex(0, -20);
+  vertex(-5, -5);
+  vertex(-20, 0);
+  endShape(CLOSE);
+  popMatrix();
 }

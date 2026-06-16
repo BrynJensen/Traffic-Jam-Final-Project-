@@ -74,9 +74,11 @@ void game() {
   truckX2 += dashS/2;
 
   //RESET TRUCK POSITIONS
-  if (truckX1 >= width + 1400) {
-    truckX1 = -200;
-    truckX2 = -1300;
+  if (truckX1 >= width + 800) {
+    truckX1 = -200 + random(-100, 100);
+  }
+  if (truckX2 >= width + 100) {
+   truckX2 = -1000 + random(-250, 250); 
   }
 
   //IF COLLIDE WITH RIGHT SIDE OF CAR MOVE CAR TO RIGHT
@@ -118,30 +120,8 @@ void game() {
   if (redX < redW/2) redX = redW/2;
   if (blueX < blueW/2) redX = redW/2;
 
-  //LIVES
-  if ((collisionTR == true || collisionT2R == true) && cooldownRed == false) {
-    cooldownRed = true;
-    redLives -= 1;
-  }
-
-  if (cooldownRed == true) cooldownR ++;
-
-  if (cooldownR >= 60) {
-    cooldownRed = false;
-    cooldownR = 0;
-  }
-
-  if (redLives == 3) {
-    redCar = red;
-  } else if (redLives == 2) {
-    redCar = redDarker;
-  } else if (redLives == 1) {
-    redCar = redDarkest;
-  } else if (redLives == 0) {
-    mode = GAMEOVER;
-  }
-
-  println(redLives);
+  //LIVES/SCORING
+  lives();
 }
 
 void gameClicks() {

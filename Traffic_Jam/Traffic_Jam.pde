@@ -102,14 +102,14 @@ void setup() {
   //CAR INITIALIZATION
   redX = width/2;
   redY = height/2 - 75;
-  redW = 100;
-  redH = 50;
+  redW = 110;
+  redH = 55;
   
   
   blueX = width/2;
   blueY = height/2 + 75;
-  blueW = 100;
-  blueH = 50;
+  blueW = 110;
+  blueH = 55;
   
   redLives = 3;
   blueLives = 3;
@@ -119,7 +119,7 @@ void setup() {
   truckW1 = 200;
   truckH1 = 100;
   
-  truckX2 = -1300;
+  truckX2 = -1000;
   truckY2 = 575;
   truckW2 = 200;
   truckH2 = 100;
