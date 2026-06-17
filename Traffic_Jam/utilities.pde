@@ -24,8 +24,8 @@ void reset() {
 
   truckX2 = -1300;
   truckY2 = 575;
-  truckW2 = 200;
-  truckH2 = 100;
+  truckW2 = 150;
+  truckH2 = 75;
 
   dashS = 3;
   dashX = - 80;
@@ -44,6 +44,9 @@ void reset() {
 
   redCar = red;
   blueCar = blue;
+
+  truckYSwap = false;
+  truck2YSwap = false;
 }
 
 void collisionTR(float L1, float R1, float T1, float B1, float L2, float R2, float T2, float B2) {
@@ -283,14 +286,14 @@ void lives() {
   if ((collisionTR == true || collisionT2R == true) && cooldownRed == false) {
     cooldownRed = true;
     redLives -= 1;
-    
+
     star(redX, redY, 5);
   }
 
   if ((collisionTB == true || collisionT2B == true) && cooldownBlue == false) {
     cooldownBlue = true;
     blueLives -= 1;
-    
+
     star(blueX, blueY, 5);
   }
 
@@ -332,11 +335,11 @@ void star(float x, float y, float s) {
   fill(#FCD719);
   strokeWeight(5);
   stroke(#FCA219);
-  
+
   pushMatrix();
   translate(x, y);
   scale(s);
-  
+
   beginShape();
   vertex(-5, 5);
   vertex(0, 20);

@@ -1,4 +1,5 @@
 void game() {
+  //VARIABLES FOR CRASHES
   T1T = truckY1 - truckH1/2;
   T1B = truckY1 + truckH1/2;
   T1L = truckX1 - truckW1/2;
@@ -19,10 +20,11 @@ void game() {
   BR = blueX + blueW/2;
   BL = blueX - blueW/2;
 
-  collisionTR(T1L, T1R, T1T, T1B, RL, RR, RT, RB); //COLLISION BETWEEN TOP TRUCK AND RED
-  collisionT2R(T2L, T2R, T2T, T2B, RL, RR, RT, RB); //COLLISION BETWEEN BOTTOM TRUCK AND RED
-  collisionTB(T1L, T1R, T1T, T1B, BL, BR, BT, BB); //COLLISION BETWEEN TOP TRUCK AND BLUE
-  collisionT2B(T2L, T2R, T2T, T2B, BL, BR, BT, BB); //COLLISION BETWEEN BOTTOM TRUCK AND RED
+  //COLLISIONS CODE
+  collisionTR(T1L, T1R, T1T, T1B, RL, RR, RT, RB); //COLLISION BETWEEN BIG TRUCK AND RED
+  collisionT2R(T2L, T2R, T2T, T2B, RL, RR, RT, RB); //COLLISION BETWEEN SMALL TRUCK AND RED
+  collisionTB(T1L, T1R, T1T, T1B, BL, BR, BT, BB); //COLLISION BETWEEN BIG TRUCK AND BLUE
+  collisionT2B(T2L, T2R, T2T, T2B, BL, BR, BT, BB); //COLLISION BETWEEN SMALL TRUCK AND BLUE
   redBlueCollision(); //CAR COLLISIONS
 
   //DRAW BACKGROUND
@@ -73,15 +75,29 @@ void game() {
   truckX1 += dashS/2;
   truckX2 += dashS/2;
 
-  //RESET TRUCK POSITIONS
+  //RESET TRUCK POSITIONS OFF OF SCREEN
   if (truckX1 >= width + 800) {
     truckX1 = -200 + random(-100, 100);
+    truckYSwap = !truckYSwap;
   }
   if (truckX2 >= width + 100) {
-   truckX2 = -1000 + random(-250, 250); 
+    truckX2 = -900 + random(-250, 250);
+    truck2YSwap = !truck2YSwap;
   }
 
-  //IF COLLIDE WITH RIGHT SIDE OF CAR MOVE CAR TO RIGHT
+  if (truckYSwap == true) {
+    truckY1 = 575;
+  } else {
+    truckY1 = 325;
+  }
+
+  if (truck2YSwap == true) {
+    truckY2 = 325;
+  } else {
+    truckY2 = 575;
+  }
+
+  //IF COLLIDE WITH RIGHT SIDE OF TRUCK MOVE CAR TO RIGHT
   if (collisionRightTR == true) redX += dashS/2;
   if (collisionRightT2R == true) redX += dashS/2;
 
@@ -91,7 +107,7 @@ void game() {
   //CAR MOVEMENT
   playerMovement();
 
-  //DYING
+  //DYING BY FALLING OFF EDGE
   if (redY <= 150) {
     redW -= 2;
     redH -= 1;
@@ -110,8 +126,7 @@ void game() {
     blueH -= 1;
   }
 
-  if (blueW <= 0) mode = GAMEOVER;
-  if (redW <= 0) mode = GAMEOVER;
+  if (blueW <= 0 || redW <= 0) mode = GAMEOVER;
 
   //RESTRICT MOVEMENT OF CARS
   if (redX >= width - redW/2) redX = width - redW/2;
@@ -120,7 +135,7 @@ void game() {
   if (redX < redW/2) redX = redW/2;
   if (blueX < blueW/2) redX = redW/2;
 
-  //LIVES/SCORING
+  //LIVES SCORING
   lives();
 }
 

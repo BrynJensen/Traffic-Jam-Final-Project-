@@ -1,19 +1,18 @@
 //Bryn Jensen
 //2-1
 //TRAFFIC JAM
-//add intro gif, music, make cars look good, make trucks look good, make truck 2 small and alternate the two top and bottom
 
 //IMPORT LIBRARIES
-  //JAVA FX
-  //import processing.javafx.*;
-  
-  //MINIM
-  import ddf.minim.*;
-  import ddf.minim.analysis.*;
-  import ddf.minim.effects.*;
-  import ddf.minim.signals.*;
-  import ddf.minim.spi.*;
-  import ddf.minim.ugens.*;
+//JAVA FX
+//import processing.javafx.*;
+
+//MINIM
+import ddf.minim.*;
+import ddf.minim.analysis.*;
+import ddf.minim.effects.*;
+import ddf.minim.signals.*;
+import ddf.minim.spi.*;
+import ddf.minim.ugens.*;
 
 //MODE FRAMEWORK
 int mode;
@@ -59,6 +58,7 @@ boolean cooldownRed, cooldownBlue; //lives lost boolean
 
 float truckX1, truckY1, truckH1, truckW1, T1L, T1R, T1T, T1B;
 float truckX2, truckY2, truckH2, truckW2, T2L, T2R, T2T, T2B;
+boolean truckYSwap, truck2YSwap;
 
 boolean collisionTopTR, collisionBottomTR, collisionRightTR, collisionLeftTR; //T=TRUCK, T2=TRUCK 2, R=RED, B=BLUE, RELATIVE TO TRUCK
 boolean collisionTopT2R, collisionBottomT2R, collisionRightT2R, collisionLeftT2R;
@@ -83,55 +83,63 @@ void setup() {
   size(600, 900, P2D);
   mode = INTRO;
   smooth();
-  
+
   textAlign(CENTER);
   rectMode(CENTER);
-  
+
   //ENTITY INITIALIZATION
-  
+
   //KEYBOARD VARIABLES INITIALIZATION
   wkey = akey = skey = dkey = upkey = leftkey = downkey = rightkey = false;
-  
+
   //COLLISION VARIABLES INITIALIZATION
   bottom = top = right = left = false;
-  
+
   //FONT LOADING
   PFont font = createFont("Magic Yellow.otf", 200);
   textFont(font);
-  
+
   //CAR INITIALIZATION
   redX = width/2;
   redY = height/2 - 75;
   redW = 110;
   redH = 55;
-  
-  
+
+
   blueX = width/2;
   blueY = height/2 + 75;
   blueW = 110;
   blueH = 55;
-  
+
   redLives = 3;
   blueLives = 3;
-  
+
+  //TRUCK INITIALIZATION
   truckX1 = -200;
   truckY1 = 325;
   truckW1 = 200;
   truckH1 = 100;
-  
+
   truckX2 = -1000;
   truckY2 = 575;
-  truckW2 = 200;
-  truckH2 = 100;
-  
+  truckW2 = 150;
+  truckH2 = 75;
+
+  //LIVES GRACE TIME COUNTER
   cooldownR = 0;
   cooldownB = 0;
-  
+
+  //LIVES GRACE TIME TRACKER
   cooldownRed = false;
   cooldownBlue = false;
-  
+
+  //CAR COLOURS
   redCar = red;
   blueCar = blue;
+
+  //TRUCK Y LEVEL SWAP
+  truckYSwap = false;
+  truck2YSwap = false;
 }
 
 
